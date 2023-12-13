@@ -11,8 +11,8 @@ public class TrabalhoRobson {
 
         Scanner scanner = new Scanner(System.in);
         int escolha = 0;
-
-        while (escolha != 4) {
+        //sempre que modificar coloquem o numero de sair para o ultimo da lista
+        while (escolha != 5) {
             System.out.println("Selecione uma opção:");
             System.out.println("1. Ler arquivo");
             System.out.println("2. Ordenar utilizando Counting Sort");
