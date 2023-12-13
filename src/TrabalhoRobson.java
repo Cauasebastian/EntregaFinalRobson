@@ -7,7 +7,7 @@ public class TrabalhoRobson {
     public static final Logger logger = Logger.getLogger(TrabalhoRobson.class.getName());
 
     public static void main(String[] args) throws IOException {
-        String file = "Link Do Arquivo txt no pc";
+        String file = "Link Do Arquivo txt ";
 
         Scanner scanner = new Scanner(System.in);
         int escolha = 0;
