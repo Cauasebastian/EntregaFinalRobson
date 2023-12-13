@@ -66,6 +66,7 @@ public class TrabalhoRobson {
                             default:
                                 System.out.println("Opção inválida.");
                         }
+                          atulizarArquivo(file,funcionariosOrdenados);
                     }
                     break;
 
@@ -107,6 +108,7 @@ public class TrabalhoRobson {
                             default:
                                 System.out.println("Opção inválida.");
                         }
+                          atulizarArquivo(file,funcionariosOrdenadosShellSort);
                     }
                     break;
 
