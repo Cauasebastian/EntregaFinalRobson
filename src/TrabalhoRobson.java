@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -7,7 +6,8 @@ public class TrabalhoRobson {
     public static final Logger logger = Logger.getLogger(TrabalhoRobson.class.getName());
 
     public static void main(String[] args) throws IOException {
-        String file = "Link Do Arquivo txt ";
+        String file = "src/dados_Funcionarios.txt";
+
 
         Scanner scanner = new Scanner(System.in);
         int escolha = 0;
@@ -16,8 +16,9 @@ public class TrabalhoRobson {
             System.out.println("Selecione uma opção:");
             System.out.println("1. Ler arquivo");
             System.out.println("2. Ordenar utilizando Counting Sort");
-            System.out.println("3. Salvar arquivo");
-            System.out.println("4. Sair");
+            System.out.println("3. Ordenar utilizando o método ShellSort");
+            System.out.println("4. Salvar arquivo");
+            System.out.println("5. Sair");
             escolha = scanner.nextInt();
 
             switch (escolha) {
@@ -68,13 +69,54 @@ public class TrabalhoRobson {
                     }
                     break;
 
-                case 3: // Salvar arquivo
+                    case 3:
+                    int subEscolhaOrdenacao = 0;
+                    while (subEscolhaOrdenacao != 3) {
+                        System.out.println("\nEscolha o método de ordenação para ShellSort:");
+                        System.out.println("1. Por Matrícula");
+                        System.out.println("2. Por Nome");
+                        System.out.println("3. Voltar");
+                
+                        subEscolhaOrdenacao = scanner.nextInt();
+                        Funcionario[] funcionariosOrdenadosShellSort = leArquivo(file, 300);
+                
+                        switch (subEscolhaOrdenacao) {
+                            case 1: // Ordenar por matrícula usando ShellSort
+                                System.out.println("\nDados antes da ordenação por matrícula:");
+                                mostraListaFunc(funcionariosOrdenadosShellSort);
+                
+                                ShellSort.ordenarPorMatricula(funcionariosOrdenadosShellSort);
+                
+                                System.out.println("\nDados após a ordenação por matrícula usando ShellSort:");
+                                mostraListaFunc(funcionariosOrdenadosShellSort);
+                                break;
+                
+                            case 2: // Ordenar por nome usando ShellSort
+                                System.out.println("\nDados antes da ordenação por nome:");
+                                mostraListaFunc(funcionariosOrdenadosShellSort);
+                
+                                ShellSort.ordenarPorNome(funcionariosOrdenadosShellSort);
+                
+                                System.out.println("\nDados após a ordenação por nome usando ShellSort:");
+                                mostraListaFunc(funcionariosOrdenadosShellSort);
+                                break;
+                
+                            case 3: // Voltar
+                                break;
+                
+                            default:
+                                System.out.println("Opção inválida.");
+                        }
+                    }
+                    break;
+
+                case 4: // Salvar arquivo
                     Funcionario[] funcionariosParaSalvar = leArquivo(file, 300);
                     atulizarArquivo(file, funcionariosParaSalvar);
                     System.out.println("\nDados salvos no arquivo.");
                     break;
 
-                case 4: // Sair
+                case 5: // Sair
                     System.out.println("Saindo do programa.");
                     break;
 
@@ -83,6 +125,7 @@ public class TrabalhoRobson {
             }
         }
     }
+
     public static Funcionario[] leArquivo(String caminhoParaArquivo, int quantidadeDeFuncionarios)
             throws IOException, NumberFormatException {
         Funcionario[] funcionarios = new Funcionario[quantidadeDeFuncionarios];
