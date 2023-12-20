@@ -42,31 +42,36 @@ public class CountingSort {
     }
 
     public static void countingSortByNome(Funcionario[] funcionarios) {
+        // Encontrando o comprimento máximo do nome
         int maxLength = 0;
         for (Funcionario funcionario : funcionarios) {
             if (funcionario != null) {
                 maxLength = Math.max(maxLength, funcionario.getNome().length());
             }
         }
-
+    //array para armazenar os funcionários ordenados
         Funcionario[] sorted = new Funcionario[funcionarios.length];
 
+        // Implementação do Counting Sort para ordenar os funcionários por nome
         for (int pos = maxLength - 1; pos >= 0; pos--) {
+            // Criando um array de contagem para os 256 possíveis caracteres
             int[] count = new int[256];
 
             for (Funcionario funcionario : funcionarios) {
+                // Contando a ocorrência de cada caractere na posição atual
                 if (funcionario != null && pos < funcionario.getNome().length()) {
                     char ch = funcionario.getNome().charAt(pos);
                     count[ch]++;
                 } else {
-                    count[0]++;
+                    count[0]++;// Contagem de caracteres não presentes
                 }
             }
-
+            // Atualizando o array de contagem para refletir as posições corretas dos caracteres
             for (int i = 1; i < count.length; i++) {
                 count[i] += count[i - 1];
             }
 
+            // Construindo o array ordenado com base na posição correta de cada funcionário
             for (int i = funcionarios.length - 1; i >= 0; i--) {
                 if (funcionarios[i] != null && pos < funcionarios[i].getNome().length()) {
                     char ch = funcionarios[i].getNome().charAt(pos);
